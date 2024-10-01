@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 int main (void) {
-	printf("%s", "Input a string of characters, with a length of 20, on a single line: ");
+	printf("%s", "Input a string of characters, with a max length of 20, on a single line: ");
 
 	char inputString[20] = "";
 	scanf("%19s", inputString);
