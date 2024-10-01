@@ -8,20 +8,29 @@
  * the results to the built in function (within math.h) */
 
 #include <stdio.h>
+#include <math.h>
+
+int power (int a, int b) {
+	int r = 1;
+	while (b != 0) {
+		if (b < 0) { r /= a; b++;}
+		else {r *= a; b--;}
+	}
+	return r;
+}
 
 int main (void) {
-	printf("Input an integer: ");
+	printf("Input two integers to calculate a^b.\n");
+	
+	printf("a: ");
+	int a = 0;
+	scanf("%d", &a);
 
-	int input = 0;
-	scanf("%d", &input);
+	printf("b: ");
+	int b = 0;
+	scanf("%d", &b);
 
-	if (input <= 0) printf("There are no non-negative odd integers less than or equal to your number.\n");
+	printf("%d", power(a,b));
 
-	printf("{");
-	for (int i = 1; i <= input; i += 2) {
-		printf("%d", i);
-		if ((i + 1) < input) printf(", ");
-	}
-	printf("}");
 	puts("");
 }
