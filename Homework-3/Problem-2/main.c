@@ -29,8 +29,9 @@ int main (void) {
 	printf("b: ");
 	int b = 0;
 	scanf("%d", &b);
-
-	printf("%d", power(a,b));
+	
+	printf("Math.h output: %d\n", (int)pow(a,b));
+	printf("My function output: %d\n", power(a,b));
 
 	puts("");
 }
