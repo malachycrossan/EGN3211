@@ -1,1 +1,1 @@
-COP3330 FALL24 Peter Drewes
+EGN3211 FALL24 Peter Drewes
