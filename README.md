@@ -1,1 +1,3 @@
-EGN3211 FALL24 Peter Drewes
+#EGN3211 FALL24
+- Class name: Intro to C
+- Professor: Peter Drewes
