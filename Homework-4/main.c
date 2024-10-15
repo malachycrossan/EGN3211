@@ -1,6 +1,11 @@
 /* Author: Malachy Crossan
  * Date: 10-14-24
- * Class: EGN3211-0002 */
+ * Class: EGN3211-0002
+ * Assignment: 4
+ * Prompts user for post-fix expression
+ * Then calculates the result
+ * Optionally outputs the stack at each itteration
+ * */
 
 #include <stdio.h>
 #include <math.h>
