@@ -6,44 +6,54 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define EXPRESSION_LENGTH 200
+#define MAX_EXPRESSION_LENGTH 200 //
 
-double add (double a, double b);
-double sub (double a, double b);
-double mut (double a, double b);
-double dvd (double a, double b);
-double fac (double a);
+double add (double a, double b); // adds a to b
+double sub (double a, double b); // subtracts b from a
+double mut (double a, double b); // multiplys a by b
+double dvd (double a, double b); // divides a by b
+// double pow(double,double) math.h returns a^b
+// double exp(double)        math.h returns e^a
+double fac (double a);		 // returns a!
 
-int parseType (char expression);
+int parseType (char expression); // +:0 -:1 *:2 /:3 ^:4 e:5 !:6 0->9:7 ' ':8
 
 int main (void) {
-	double (*twoInOp[5])(double, double) = {add, sub, mut, dvd, pow};
-	double (*oneInOp[2])(double) = {exp, fac};
+	double (*twoInOp[5])(double, double) = {add, sub, mut, dvd, pow}; //refrence functions with two inputs
+	double (*oneInOp[2])(double) = {exp, fac}; // refrence functions with one input
 	
+	// Prompt user
 	printf("Input an expression to be solved: ");
-	char expression[EXPRESSION_LENGTH];
+	char expression[MAX_EXPRESSION_LENGTH];
 	scanf("%[^\n]", &expression);
 	
+	// initialize stack
 	int top = -1;
-	double stack[EXPRESSION_LENGTH/2];
+	double stack[MAX_EXPRESSION_LENGTH/2];
 	
+	// "curr" pointer loops through the expression string
 	char *curr = expression;
 	while (*curr != '\0') {
-		for (int i = 0; i <= top; i++) printf("%lf ",stack[i]); printf("<-top\n");
 		int type = parseType(*curr);
-		//printf("T: %d\n",type);
-		if (type < 0) continue;
-		else if (type <= 4) stack[++top] = (*twoInOp[type])(stack[top--],stack[top--]);
-		else if (type <= 6) stack[++top] = (*oneInOp[type-5])(stack[top--]);
+		if (type < 0) {curr++; continue;} // unknown characters are ignored
+		
+		else if (type <= 4) 
+		stack[++top] = (*twoInOp[type])(stack[top--],stack[top--]); //two input operation pops inputs off stack then pushes result
+		
+		else if (type <= 6) 
+		stack[++top] = (*oneInOp[type-5])(stack[top--]); //one input operation pops input off stack then pushes result
+		
 		else if (type == 7) {
 			double val = 0;
+			// loops through expression untill non-digit character is found
 			while (parseType(*curr) == 7) {
-				val *= 10;
-				val += *curr - '0';
+				val *= 10; // shifts decimal place to the right
+				val += *curr - '0'; // inserts one's place digit (ascii for integer n minus ascill 0 equals integer n)
 				curr++;
 			}
-			stack[++top] = val;
-		}
+			stack[++top] = val; // Pushes final value onto stack
+		} else { curr++; continue; }
+		for (int i = 0; i <= top; i++) printf("%.2f ",stack[i]); printf("<-top of stack %c\n",*curr); //prints the current stack
 		curr++;
 	}
 	printf("Result: %lf\n",stack[top]);
@@ -54,7 +64,7 @@ double sub (double a, double b) {return a - b;};
 double mut (double a, double b) {return a * b;};
 double dvd (double a, double b) {return a / b;};
 double etx (double a) {return exp(a);}
-double fac (double a) {return a * tgamma(a);printf("%lf",tgamma(a));}
+double fac (double a) {return a * tgamma(a);} // a! = a * gamma(a) for all real numbers
 
 int parseType (char expression) {
 	switch (expression) {
