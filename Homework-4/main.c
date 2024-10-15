@@ -3,10 +3,9 @@
  * Class: EGN3211-0002 */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 
-#define MAX_EXPRESSION_LENGTH 200 //
+#define MAX_EXPRESSION_LENGTH 200
 
 double add (double a, double b); // adds a to b
 double sub (double a, double b); // subtracts b from a
