@@ -2,9 +2,9 @@
  * Date: 10-14-24
  * Class: EGN3211-0002
  * Assignment: 4
- * Prompts user for post-fix expression
+ * Prompts user for postfix expression
  * Then calculates the result
- * Optionally outputs the stack at each itteration
+ * Optionally outputs the stack at each iteration
  * */
 
 #include <stdio.h>
@@ -14,7 +14,7 @@
 
 double add (double a, double b); // adds a to b
 double sub (double a, double b); // subtracts b from a
-double mut (double a, double b); // multiplys a by b
+double mut (double a, double b); // multiplies a by b
 double dvd (double a, double b); // divides a by b
 // double pow(double,double) math.h returns a^b
 // double exp(double)        math.h returns e^a
@@ -23,8 +23,8 @@ double fac (double a);		 // returns a!
 int parseType (char expression); // +:0 -:1 *:2 /:3 ^:4 e:5 !:6 0->9:7 ' ':8
 
 int main (void) {
-	double (*twoInOp[5])(double, double) = {add, sub, mut, dvd, pow}; //refrence functions with two inputs
-	double (*oneInOp[2])(double) = {exp, fac}; // refrence functions with one input
+	double (*twoInOp[5])(double, double) = {add, sub, mut, dvd, pow}; //reference functions with two inputs
+	double (*oneInOp[2])(double) = {exp, fac}; // reference functions with one input
 	
 	// Prompt user
 	printf("Input an expression to be solved: ");
@@ -49,7 +49,7 @@ int main (void) {
 		
 		else if (type == 7) {
 			double val = 0;
-			// loops through expression untill non-digit character is found
+			// loops through expression until non-digit character is found
 			while (parseType(*curr) == 7) {
 				val *= 10; // shifts decimal place to the right
 				val += *curr - '0'; // inserts one's place digit (ascii for integer n minus ascill 0 equals integer n)
@@ -57,7 +57,7 @@ int main (void) {
 			}
 			stack[++top] = val; // Pushes final value onto stack
 		} else { curr++; continue; }
-		for (int i = 0; i <= top; i++) printf("%.2f ",stack[i]); printf("<-top of stack %c\n",*curr); //prints the current stack
+		for (int i = 0; i <= top; i++) printf("[%.1f]",stack[i]); printf("<-stack %c\n",*curr); //prints the current stack
 		curr++;
 	}
 	printf("Result: %lf\n",stack[top]);
