@@ -10,6 +10,9 @@ struct menu_item {
        char description[128];	
 };
 
+//struct game_state
+//struct player_turn
+
 void main (void) {
 	printf("Welcome to Malachy Crossan's Monopoly Simulator Project\n");
 	
